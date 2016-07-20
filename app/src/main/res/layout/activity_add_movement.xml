@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_add_movement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="?attr/colorPrimary">
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_below="@+id/tb_add_movement"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/cover">
+
+        <ImageButton
+            android:id="@+id/btn_location"
+            android:layout_width="@dimen/cover"
+            android:layout_height="@dimen/cover"
+            android:src="@drawable/ic_location_on_white_24dp"/>
+
+        <EditText
+            android:id="@+id/et_location"
+            android:layout_toRightOf="@+id/btn_location"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:hint="Input Location"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Movement Note ( Required ):"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="@dimen/text_size"/>
+
+    <EditText
+        android:id="@+id/et_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input Movement Note"
+        android:gravity="center"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_add_movement"
+            android:layout_width="@dimen/none"
+
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size"/>
+
+        <Button
+            android:id="@+id/btn_return_movement"
+            android:layout_width="@dimen/none"
+            android:layout_height="wrap_content"
+            android:text="Return"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size"/>
+
+    </LinearLayout>
+
+</LinearLayout>
