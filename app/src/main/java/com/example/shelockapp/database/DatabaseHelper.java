@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 			db = this.getReadableDatabase();
 			String query = "SELECT * FROM " + Constant.TABLE_INFO_NAME;
 			Cursor cursor = db.rawQuery(query, null);
-			lstPerson.clear();
+				lstPerson.clear();
 			if (cursor.moveToFirst()) {
 		          do {
 		              Person person = new Person();
@@ -97,7 +97,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 		db = getReadableDatabase();
 		String query = "SELECT * FROM " + Constant.TABLE_MOVEMENT_NAME + " where " + Constant.ID + " =?";
 		Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)});
-		lstMovement.clear();
+			lstMovement.clear();
 		if (cursor.moveToFirst()) {
 			do {
 				Movement movement = new Movement();

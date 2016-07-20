@@ -1,15 +1,18 @@
 package com.example.shelockapp.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shelockapp.R;
 import com.example.shelockapp.adapter.MovementAdapter;
@@ -71,17 +74,38 @@ public class MovementFragment extends Fragment{
             }
 
             @Override
-            public void onLongClick(View view, int position) {
-                helper.deleteMovement(lstMovement.get(position).getNumber());
-               lstMovement.remove(position);
-                movementAdapter.notifyItemRemoved(position);
-//                callback.onClick(view,position);
-                getActivity().getSupportFragmentManager().beginTransaction().detach(MovementFragment.this).attach(MovementFragment.this).commitAllowingStateLoss();
+            public void onLongClick(View view,int position) {
+                AlertDialog dialog = dialog(position);
+                dialog.show();
             }
         });
 
 
 
         return view;
+    }
+    public AlertDialog dialog(final int position){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("WARNING!!!");
+        builder.setMessage("Are you sure want to delete " + lstMovement.get(position).getNote() + "?");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                helper.deleteMovement(lstMovement.get(position).getNumber());
+                lstMovement.remove(position);
+                movementAdapter.notifyItemRemoved(position);
+                Toast.makeText(getContext(), "Successfully Delete", Toast.LENGTH_SHORT).show();
+//                callback.onClick(view,position);
+                getActivity().getSupportFragmentManager().beginTransaction().detach(MovementFragment.this).attach(MovementFragment.this).commitAllowingStateLoss();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getContext(), "Cancel", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        return builder.create();
     }
 }

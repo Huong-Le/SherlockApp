@@ -167,7 +167,8 @@ public class AddMovementActivity extends AppCompatActivity{
 
                     try {
 
-                        String types = "cafe|restaurant"; // Listing places only cafes, restaurants
+                        String types = "cafe|restaurant";
+//                        String types = "all";
 
                         double radius = 1000; // 1000 meters
 

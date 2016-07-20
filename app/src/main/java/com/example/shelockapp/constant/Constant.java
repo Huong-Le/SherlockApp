@@ -35,7 +35,7 @@ public class Constant {
     public static final String NUMBER = "number";
     public static final String LOCATION = "location";
     public static final String DATE = "date";
-    public static final String TABLE_CREATE_INFO = "create table " + TABLE_INFO_NAME +"( " + ID + " integer primary key, " + COVER + " text, " + NAME + " text not null, " + AGE + " integer not null, " + HEIGHT + " integer not null, " + GENDER + " text not null, " + HAIR_COLOR + " text, " + ADDRESS + " text, " + COMMENT + " text);";
+    public static final String TABLE_CREATE_INFO = "create table " + TABLE_INFO_NAME +"( " + ID + " integer primary key autoincrement, " + COVER + " text, " + NAME + " text not null, " + AGE + " integer not null, " + HEIGHT + " integer not null, " + GENDER + " text not null, " + HAIR_COLOR + " text, " + ADDRESS + " text, " + COMMENT + " text);";
     public static final String TABLE_CREATE_MOVEMENT = "create table " + TABLE_MOVEMENT_NAME +"("+ NUMBER + " integer primary key autoincrement, " + ID + " integer not null, " + NAME + " text not null, " + LOCATION +" text not null, " + NOTE + " text not null, " + DATE + " text not null);";
     public static final String UPDATE_TRIGGER = "create trigger insert_trigger after update on InfoData begin update MovementData set name = new.name where id = old.id; end;";
 

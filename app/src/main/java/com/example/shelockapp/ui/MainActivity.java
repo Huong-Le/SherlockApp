@@ -1,7 +1,9 @@
 package com.example.shelockapp.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     PersonAdapter personAdapter;
     ArrayList<Person> listPerson = new ArrayList<Person>();
     DatabaseHelper helper = new DatabaseHelper(this);
+    ArrayList<Person> filteredList = new ArrayList<>();
 //    int positionClick;
 
     @Override
@@ -66,11 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onLongClick(View view, int position) {
-                helper.deleteInfo(listPerson.get(position).getId());
-                helper.loadInfoData(listPerson);
-//                listPerson.remove(position);
-                personAdapter.notifyDataSetChanged();
-//                personAdapter.notifyItemRemoved(position);
+                AlertDialog dialog1 = dialog1(position);
+                dialog1.show();
             }
         });
 
@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 //                    Person person = (Person)data.getSerializableExtra(Constant.PERSON);
 //                    listPerson.set(positionClick, person);
                     helper.loadInfoData(listPerson);
+                    helper.loadInfoData(filteredList);
                     personAdapter.notifyDataSetChanged();
 
                     break;
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             case Constant.REQUEST_ADD:
 
                     helper.loadInfoData(listPerson);
+                helper.loadInfoData(filteredList);
 //                if (resultCode == RESULT_OK) {
 //                    listPerson.add((Person) data.getSerializableExtra(Constant.PERSON));
                     personAdapter.notifyDataSetChanged();
@@ -156,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             newText = newText.toLowerCase();
             newText = newText.toLowerCase();
 
-            final ArrayList<Person> filteredList = new ArrayList<Person>();
+            filteredList = new ArrayList<Person>();
 
             for (int i = 0; i < listPerson.size(); i++) {
 
@@ -176,9 +178,9 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onLongClick(View view, int position) {
-                    listPerson.remove(filteredList.get(position));
-                    filteredList.remove(position);
-//                        personAdapter.notifyDataSetChanged();
+                    AlertDialog dialog = dialog(position);
+                    dialog.show();
+
                 }
 
             });
@@ -188,4 +190,50 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+    public AlertDialog dialog(final int position){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("WARRNING!!!");
+        builder.setMessage("Are you sure want to delete " + filteredList.get(position).getName() + "?");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                helper.deleteInfo(filteredList.get(position).getId());
+                listPerson.remove(filteredList.get(position));
+                filteredList.remove(position);
+                personAdapter.notifyDataSetChanged();
+                Toast.makeText(MainActivity.this, "Successfully Delete", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        return builder.create();
+    }
+    public AlertDialog dialog1(final int position){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("WARRNING!!!");
+        builder.setMessage("Are you sure want to delete " + listPerson.get(position).getName() + "?");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                helper.deleteInfo(listPerson.get(position).getId());
+                listPerson.remove(position);
+                personAdapter.notifyDataSetChanged();
+                Toast.makeText(MainActivity.this, "Successfully Delete", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        return builder.create();
+    }
+
 }
