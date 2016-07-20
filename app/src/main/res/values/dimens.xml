@@ -1,0 +1,29 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="cover">150dp</dimen>
+    <dimen name="text_size">16dp</dimen>
+    <dimen name="app_name_size">28dp</dimen>
+    <dimen name="margin_line">2dp</dimen>
+    <dimen name="margin_movement">10dp</dimen>
+    <dimen name="location_date_size">15dp</dimen>
+    <dimen name="note_size">30dp</dimen>
+    <dimen name="height_movement">100dp</dimen>
+    <dimen name="none">0dp</dimen>
+    <dimen name="label_movement">30dp</dimen>
+    <dimen name="content_movement">25dp</dimen>
+    <dimen name="margin_left_movement">20dp</dimen>
+    <dimen name="margin_right_movement">40dp</dimen>
+    <dimen name="notify_movement">40dp</dimen>
+    <dimen name="corner_radius">5dp</dimen>
+    <dimen name="margin_item_movement">5dp</dimen>
+    <dimen name="textsize_place">20dp</dimen>
+    <dimen name="padding_place">10dp</dimen>
+    <dimen name="size_person">180dp</dimen>
+    <dimen name="height_frame_text_main">100dp</dimen>
+    <dimen name="height_text_main">70dp</dimen>
+    <dimen name="margin_left_text">5dp</dimen>
+    <dimen name="textsize_name_main">22dp</dimen>
+    <dimen name="textsize_movement_main">18dp</dimen>
+</resources>
